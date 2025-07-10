@@ -1,0 +1,148 @@
+﻿@model PabloCortes_Proyecto1.Models.LavadoVehiculo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>LavadoVehiculo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdLavado" class="control-label"></label>
+                <input asp-for="IdLavado" class="form-control" />
+                <span asp-validation-for="IdLavado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlacaVehiculo" class="control-label"></label>
+                <input asp-for="PlacaVehiculo" class="form-control" />
+                <span asp-validation-for="PlacaVehiculo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCliente" class="control-label"></label>
+                <input asp-for="IdCliente" class="form-control" />
+                <span asp-validation-for="IdCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdEmpleado" class="control-label"></label>
+                <input asp-for="IdEmpleado" class="form-control" />
+                <span asp-validation-for="IdEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoLavado" class="control-label">Tipo de Lavado</label>
+                <select asp-for="TipoLavado" class="form-control" id="tipoLavado" onchange="actualizarPrecio()">
+                    <option value="">Seleccione un tipo</option>
+                    <option value="Básico">Básico - ₡8000</option>
+                    <option value="Premium">Premium - ₡12000</option>
+                    <option value="Deluxe">Deluxe - ₡20000</option>
+                    <option value="Joya">Joya - A convenir</option>
+                </select>
+                <span asp-validation-for="TipoLavado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label">Precio</label>
+                <input asp-for="Precio" class="form-control" id="precio" oninput="actualizarPrecioManual()" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>IVA (13%)</label>
+                <input type="text" class="form-control" id="iva" readonly />
+            </div>
+            <div class="form-group">
+                <label>Precio Total</label>
+                <input type="text" class="form-control" id="precioTotal" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="EstadoLavado" class="control-label">Estado del Lavado</label>
+                <select asp-for="EstadoLavado" class="form-control">
+                    <option value="">Seleccione un estado</option>
+                    <option value="En proceso">En proceso</option>
+                    <option value="Facturado">Facturado</option>
+                    <option value="Agendado">Agendado</option>
+                </select>
+                <span asp-validation-for="EstadoLavado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+    function actualizarPrecio() {
+        var tipo = document.getElementById('tipoLavado').value;
+        var precioInput = document.getElementById('precio');
+        var ivaInput = document.getElementById('iva');
+        var precioTotalInput = document.getElementById('precioTotal');
+
+        var precios = {
+            'Básico': 8000,
+            'Premium': 12000,
+            'Deluxe': 20000,
+            'Joya': null
+        };
+
+        if (precios[tipo] !== null) {
+            precioInput.value = Number(precios[tipo]).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        } else {
+            precioInput.value = ''; // Limpiar para "Joya" y permitir entrada manual
+        }
+        actualizarCalculos();
+    }
+
+    function actualizarPrecioManual() {
+        var precioInput = document.getElementById('precio');
+        var ivaInput = document.getElementById('iva');
+        var precioTotalInput = document.getElementById('precioTotal');
+        // Eliminar cualquier formato y convertir a número
+        var precio = parseFloat(precioInput.value.replace(/[^0-9.-]+/g, '')) || 0;
+
+        if (!isNaN(precio) && precio > 0) {
+            var iva = precio * 0.13;
+            var precioTotal = precio + iva;
+            ivaInput.value = Number(iva).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            precioTotalInput.value = Number(precioTotal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        } else {
+            ivaInput.value = '';
+            precioTotalInput.value = '';
+        }
+    }
+
+    function actualizarCalculos() {
+        var precioInput = document.getElementById('precio');
+        var ivaInput = document.getElementById('iva');
+        var precioTotalInput = document.getElementById('precioTotal');
+        // Eliminar cualquier formato y convertir a número
+        var precio = parseFloat(precioInput.value.replace(/[^0-9.-]+/g, '')) || 0;
+
+        if (!isNaN(precio) && precio > 0) {
+            var iva = precio * 0.13;
+            var precioTotal = precio + iva;
+            ivaInput.value = Number(iva).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            precioTotalInput.value = Number(precioTotal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        } else {
+            ivaInput.value = '';
+            precioTotalInput.value = '';
+        }
+    }
+
+    // Establecer valores iniciales al cargar
+    window.onload = function() {
+        actualizarPrecio(); // Llamar al iniciar para reflejar el valor por defecto
+    };
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

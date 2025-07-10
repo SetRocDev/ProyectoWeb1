@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PabloCortes_Proyecto1.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<form asp-action="Index" method="get" class="form-inline">
+    <div class="form-group mr-2">
+        <label for="searchIdentificacion" class="mr-2">Buscar por Identificación:</label>
+        <input type="text" name="searchIdentificacion" class="form-control" />
+    </div>
+    <div class="form-group mr-2">
+        <label for="searchNombre" class="mr-2">Buscar por Nombre:</label>
+        <input type="text" name="searchNombre" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<p>
+    <a asp-action="Create">Crear nuevo cliente 💁🏻‍♂️💁🏻‍♀️</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Identificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Provincia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Canton)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distrito)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DireccionExacta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreferenciaLavado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Provincia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Canton)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distrito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DireccionExacta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreferenciaLavado)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Identificacion }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Identificacion }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Identificacion })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

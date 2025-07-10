@@ -1,0 +1,75 @@
+﻿@model PabloCortes_Proyecto1.Models.LavadoVehiculo
+
+@{
+    ViewData["Title"] = "Eliminar Lavado";
+}
+
+<h1>Eliminar</h1>
+
+<h3>¿Estás seguro de que quieres eliminar este lavado?</h3>
+<div>
+    <h4>LavadoVehiculo</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdLavado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdLavado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PlacaVehiculo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PlacaVehiculo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdCliente)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdEmpleado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdEmpleado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoLavado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TipoLavado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Iva)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Iva)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PrecioTotal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PrecioTotal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EstadoLavado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EstadoLavado)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdLavado" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver a la lista</a>
+    </form>
+</div>

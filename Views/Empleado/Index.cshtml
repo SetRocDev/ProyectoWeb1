@@ -1,0 +1,79 @@
+﻿@model IEnumerable<PabloCortes_Proyecto1.Models.Empleado>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <label for="searchCedula">Buscar por Cédula:</label>
+        <input type="text" name="searchCedula" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cedula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaIngreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalarioPorDia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasVacacionesAcumulados)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRetiro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MontoLiquidacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaIngreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalarioPorDia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiasVacacionesAcumulados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRetiro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoLiquidacion)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { cedula = item.Cedula }) |
+                    @Html.ActionLink("Details", "Details", new { cedula = item.Cedula }) |
+                    @Html.ActionLink("Delete", "Delete", new { cedula = item.Cedula }) |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

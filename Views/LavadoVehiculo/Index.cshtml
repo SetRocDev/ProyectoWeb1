@@ -1,0 +1,103 @@
+﻿@model IEnumerable<PabloCortes_Proyecto1.Models.LavadoVehiculo>
+
+@{
+    ViewData["Title"] = "Listado de Lavados";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo Lavado</a>
+</p>
+
+<!-- Formulario de búsqueda -->
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <label for="idSearch">Buscar por ID:</label>
+        <input type="number" name="idSearch" id="idSearch" class="form-control" min="1" />
+        <input type="submit" value="Buscar" class="btn btn-primary" />
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdLavado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlacaVehiculo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEmpleado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoLavado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Iva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoLavado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdLavado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlacaVehiculo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdEmpleado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoLavado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Precio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Iva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrecioTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EstadoLavado)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdLavado">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.IdLavado">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.IdLavado">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="10" class="text-center">No se encontraron lavados.</td>
+            </tr>
+        }
+    </tbody>
+</table>

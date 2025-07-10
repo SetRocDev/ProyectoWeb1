@@ -1,0 +1,60 @@
+﻿@model PabloCortes_Proyecto1.Models.Vehiculo
+
+@{
+    ViewData["Title"] = "Detalles del Vehículo";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>Vehiculo</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Placa)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Placa)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Traccion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Traccion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UltimaFechaAtencion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UltimaFechaAtencion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TratamientoNanoCeramico)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TratamientoNanoCeramico)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-placa="@Model.Placa">Editar</a> |
+    <a asp-action="Index">Volver a la lista</a>
+</div>
